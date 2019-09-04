@@ -35,10 +35,6 @@ html, body {
     box-shadow: 1.5px 1.5px 1px #0002;
   }
 
-  .new-message {
-    box-shadow: 0 3px 3px #0006, 0 6px 7px #0003, 0 13px 9px #0002;
-  }
-
   input:focus, input:hover {
     box-shadow: 3px 3px 3px #0002;
   }
@@ -69,7 +65,21 @@ html, body {
     height: 400px;
     margin: 20px 0;
     border: 1px solid #ddd;
-    padding: 20px;
+    padding: 1em;
     overflow: auto;
     border-radius: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .message {
+    padding: 2px;
+    padding-left: 4px;
+  }
+
+  .new-message {
+    box-shadow: 0 3px 3px #0006, 0 6px 7px #0003, 0 13px 9px #0002;
+    border-radius: 8px;
+    /* padding-top: 0.2em; */
+    /* padding-top: 0.2em; */
   }
