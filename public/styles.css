@@ -1,6 +1,14 @@
 html, body {
     height: 100%;
   }
+
+  body, input, button {
+    font-family: Consolas;
+  }
+
+  input, button {
+    outline: none;
+  }
   
   * {
     margin: 0;
@@ -22,18 +30,38 @@ html, body {
     height: 50px;
     padding: 0 20px;
     font-size: 14px;
+    border-radius: 15px;
+    transition: all .5s;
+    box-shadow: 1.5px 1.5px 1px #0002;
+  }
+
+  .new-message {
+    box-shadow: 0 3px 3px #0006, 0 6px 7px #0003, 0 13px 9px #0002;
+  }
+
+  input:focus, input:hover {
+    box-shadow: 3px 3px 3px #0002;
   }
   
   button {
     width: 600px;
     height: 50px;
     font-size: 14px;
-    background: #069;
+    background: linear-gradient(to right, #36f, #03f);
     text-align: center;
     line-height: 50px;
     font-weight: bold;
     color: #FFF;
     margin-top: 10px;
+    border: none;
+    box-shadow: 0 0 1px 2px #02f;
+    border-radius: 5px;
+    transition: all .8s;
+  }
+
+  button:hover {
+    text-shadow: 1px 1px 4px #000;
+    background: linear-gradient(to right, #25f, #02e);
   }
   
   .messages {
@@ -42,4 +70,6 @@ html, body {
     margin: 20px 0;
     border: 1px solid #ddd;
     padding: 20px;
+    overflow: auto;
+    border-radius: 8px;
   }
