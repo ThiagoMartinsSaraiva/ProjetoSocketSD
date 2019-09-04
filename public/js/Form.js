@@ -1,17 +1,34 @@
 var socket = io("http://localhost:3000");
 var messageCount = 0
+var author
+var message
+
 function renderMessage(message, newMessage = true) {
 	messageCount++
 
-	let newMessageClass = newMessage ? 'new-message' : ''
-	$(".messages").append(
-		`<div id="message-${messageCount}" class="message ${newMessageClass}">
-			<strong>${message.author}</strong>: ${message.message}
-		</div>` );
+  let newMessageClass = newMessage ? 'new-message' : ''
+  let isYou = author == message.author ? 'is-you' : ''
+  console.log(author, message.author);
+  
+  let htmlMessage = `
+  <div id="message-${messageCount}" class="message-container ${newMessageClass} ${isYou}">
+    <div class="message">`
+    if(!isYou) {
+      htmlMessage += `
+      <div class="title">${message.author}:</div>`;
+    }
+    htmlMessage += `
+      <div>${message.message}</div>
+      <div class="time">${message.time}</div>
+    </div>
+  </div>`;
+	$(".messages").append(htmlMessage);
 	
 	setTimeout(() => {
 		$(`#message-${messageCount}`).removeClass('new-message')
-	}, 7*1000);
+  }, 7*1000);
+  
+  $(".messages").prop("scrollTop", $(".messages").prop("scrollHeight"));
 }
 
 socket.on("previousMessages", messages => {
@@ -27,11 +44,11 @@ socket.on("receivedMessage", message => {
 $("#chat").submit(event => {
   event.preventDefault();
 
-  let author = $("input[name=username]").val();
-  let message = $("input[name=message]").val();
+  author = $("input[name=username]").val();
+  message = $("input[name=message]").val();
 
   if (author.length > 0 && message.length > 0) {
-    let messageObject = { author, message };
+    let messageObject = { author, message, time: new Date().toLocaleString() };
 
     renderMessage(messageObject);
     socket.emit("sendMessage", messageObject);
