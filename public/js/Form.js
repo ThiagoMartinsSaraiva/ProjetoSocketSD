@@ -55,3 +55,10 @@ $("#chat").submit(event => {
     $("#input-message").val("");
   }
 });
+
+$("#btn-login").click(e => {
+  if ($("input[name=username]").val().length > 0) {
+        document.querySelector('#enter').style.display = 'none'
+        document.querySelector('#chat').style.visibility = 'visible'
+      }
+})
